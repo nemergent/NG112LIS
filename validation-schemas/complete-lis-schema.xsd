@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+	<import namespace="http://www.opengis.net/gml" schemaLocation="gmlBase.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:pidf:geopriv10:basicPolicy" schemaLocation="geopriv10-basic-policy.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:pidf:geopriv10:civicLoc" schemaLocation="geopriv10-civicloc.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:pidf:data-model" schemaLocation="geopriv10-datamodel.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:pidf:geopriv10" schemaLocation="geopriv10.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:geopriv:held:flow" schemaLocation="held-flow.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:geopriv:held:id" schemaLocation="held-id.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:geopriv:held" schemaLocation="held.xsd"/>
+	<!--	<import namespace="urn:ietf:params:xml:ns:location-filter" schemaLocation="location-filter.xsd"/>-->
+	<import namespace="urn:ietf:params:xml:ns:pidf:caps" schemaLocation="pidf-caps.xsd"/>
+	<import namespace="urn:ietf:params:xml:ns:pidf:cipid" schemaLocation="pidf-cipid.xsd"/>
+	<!--<import namespace="urn:ietf:params:xml:ns:pidf:rpid" schemaLocation="pidf-rpid.xsd"/>-->
+	<import namespace="urn:ietf:params:xml:ns:pidf" schemaLocation="pidf.xsd"/>
+	<import namespace="urn:oma:xml:prs:pidf:oma-pres"  schemaLocation="prs_pidf_omapres-v1_0.xsd"/>
+</schema>

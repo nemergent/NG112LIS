@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="urn:oma:xml:prs:pidf:oma-pres" 
+   xmlns="urn:oma:xml:prs:pidf:oma-pres"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified"
+   attributeFormDefault="unqualified">
+
+  <!-- This import brings in the XML language attribute xml:lang-->
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+  <xs:annotation>
+     <xs:documentation xml:lang="en">
+        XML Schema definition for OMA extensions to PIDF and Presence Data Model
+     </xs:documentation>
+  </xs:annotation>
+
+
+  <!-- Global Type definitions -->
+  <xs:simpleType name="basicType">
+     <xs:restriction base="xs:string">
+        <xs:enumeration value="open"/>
+        <xs:enumeration value="closed"/>
+     </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="emptyType"/>
+
+  <xs:simpleType name="registrationType">
+     <xs:restriction base="xs:string">
+        <xs:enumeration value="active"/>
+        <xs:enumeration value="terminated"/>
+     </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="barringType">
+     <xs:restriction base="xs:string">
+        <xs:enumeration value="active"/>
+        <xs:enumeration value="terminated"/>
+     </xs:restriction>
+   </xs:simpleType>
+
+
+  <!-- OMA extensions to PIDF tuple element -->
+  <xs:element name="service-description">
+     <xs:complexType>
+        <xs:sequence>
+           <xs:element name="service-id" type="xs:token"/>
+           <xs:element name="version" type="xs:token"/>
+           <xs:element name="description" type="xs:token" minOccurs="0"/>
+           <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/> 
+        </xs:sequence>
+        <xs:anyAttribute processContents="lax"/>
+     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="willingness">
+     <xs:complexType>
+        <xs:sequence>
+           <xs:element name="basic" type="basicType" minOccurs="0"/>
+           <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:anyAttribute processContents="lax"/>
+     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="session-participation">
+     <xs:complexType>
+        <xs:sequence>
+           <xs:element name="basic" type="basicType" minOccurs="0"/>
+           <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+     <xs:anyAttribute processContents="lax"/>
+     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="registration-state">
+     <xs:complexType>
+        <xs:simpleContent>
+           <xs:extension base="registrationType">
+              <xs:anyAttribute processContents="lax"/>
+           </xs:extension>
+        </xs:simpleContent>
+     </xs:complexType>
+  </xs:element>      
+
+  <xs:element name="barring-state">
+     <xs:complexType>
+        <xs:simpleContent>
+           <xs:extension base="barringType">
+              <xs:anyAttribute processContents="lax"/>
+           </xs:extension>
+        </xs:simpleContent>
+     </xs:complexType>
+  </xs:element>
+
+
+  <!-- OMA extensions to PDM person element -->
+  <xs:element name="overriding-willingness">
+     <xs:complexType>
+        <xs:sequence>
+           <xs:element name="basic" type="basicType" minOccurs="0"/>
+           <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:anyAttribute processContents="lax"/>
+     </xs:complexType>
+  </xs:element>
+
+
+  <!-- OMA extensions to PDM device element -->
+  <xs:element name="network-availability">
+     <xs:complexType>
+        <xs:sequence>
+           <xs:element name="network" maxOccurs="unbounded">
+              <xs:complexType>
+                 <xs:sequence>
+                    <xs:choice minOccurs="0">
+                       <xs:element name="active" type="emptyType"/>
+                       <xs:element name="terminated" type="emptyType"/>
+                    </xs:choice>
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+                 </xs:sequence>
+                 <xs:attribute name="id" type="xs:token" use="required"/>
+                 <xs:anyAttribute processContents="lax"/>
+              </xs:complexType>
+           </xs:element>
+
+           <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:anyAttribute processContents="lax"/>
+     </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+

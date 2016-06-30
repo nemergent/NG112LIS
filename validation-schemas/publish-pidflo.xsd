@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<presence xmlns="urn:ietf:params:xml:ns:pidf"
+    xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
+    xmlns:pdm="urn:ietf:params:xml:ns:pidf:data-model"
+    xmlns:op="urn:oma:xml:prs:pidf:oma-pres"
+    xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid"
+    xmlns:caps="urn:ietf:params:xml:ns:pidf:caps"
+    xmlns:c="urn:ietf:params:xml:ns:pidf:cipid"
+    xmlns:ca="urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr"
+    xmlns:gml="http://www.opengis.net/gml"
+    entity="sip:client@192.168.1.128">
+    <!--<tuple id="t3817d047">
+        <status>
+            <basic>open</basic>
+        </status>
+     </tuple>
+    <pdm:person id="p097eb63c">
+        <op:overriding-willingness>
+            <op:basic>open</op:basic>
+        </op:overriding-willingness>
+        <gp:geopriv>
+            <gp:location-info>
+                <ca:civicAddress xml:lang="en-AU">
+                    <ca:country>AU</ca:country>
+                    <ca:A1>NSW</ca:A1>
+                    <ca:A3>     Wollongong
+                    </ca:A3><ca:A4>North Wollongong
+                    </ca:A4>
+                    <ca:RD>Flinders</ca:RD><ca:STS>Street</ca:STS>
+                    <ca:RDBR>Campbell Street</ca:RDBR>
+                    <ca:LMK>
+                        Gilligan's Island
+                    </ca:LMK> <ca:LOC>Corner</ca:LOC>
+                    <ca:NAM> Video Rental Store </ca:NAM>
+                    <ca:PC>2500</ca:PC>
+                    <ca:ROOM> Westerns and Classics </ca:ROOM>
+                    <ca:PLC>store</ca:PLC>
+                    <ca:POBOX>Private Box 15</ca:POBOX>
+                </ca:civicAddress>
+            </gp:location-info>
+            <gp:usage-rules/>
+        </gp:geopriv>
+        <rpid:activities><rpid:unknown/></rpid:activities>
+        <pdm:note>Hello world</pdm:note>
+        <pdm:timestamp>2005-02-22T20:07:07Z</pdm:timestamp>
+    </pdm:person>-->
+    <pdm:device id="d1983">
+        <caps:devcaps><caps:mobility><caps:supported><caps:mobile /></caps:supported></caps:mobility></caps:devcaps>
+        <op:network-availability><op:network id="IMS"><op:active /></op:network></op:network-availability>
+        <pdm:deviceID>client@192.168.1.128</pdm:deviceID>
+        <gp:geopriv>
+            <gp:location-info>
+                <gml:Point gml:id="point" srsName="urn:ogc:def:crs:EPSG::4326">
+                    <gml:pos>35.2225 -80.8449</gml:pos>
+                </gml:Point>
+            </gp:location-info>
+            <gp:usage-rules/>
+        </gp:geopriv>
+        <pdm:gsmsignalStrength>0</pdm:gsmsignalStrength>
+        <pdm:batteryCapacity>100</pdm:batteryCapacity>
+        <pdm:neighborcellinfo>-1 , -1 , -86:-1 , -1 , -93:-1 , -1 , -110:</pdm:neighborcellinfo>
+    </pdm:device>
+</presence>
