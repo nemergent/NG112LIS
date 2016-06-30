@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+
+
+<scenario name="Presentity Publish">
+
+ <send retrans="5000">
+
+    <![CDATA[
+
+PUBLISH sip:[field0] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: <sip:[field0]>;tag=[call_number]
+To: <sip:[field0]>
+Contact: <sip:[field0]:[local_port];transport=[transport]>
+Call-ID: [call_id]
+Event: presence
+CSeq: [cseq] PUBLISH
+Max-Forwards: 70
+User-Agent: sipp client
+Supported: timer, replaces
+Content-Type: application/pidf+xml
+Content-Length: [len]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<presence xmlns="urn:ietf:params:xml:ns:pidf"
+xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
+xmlns:pdm="urn:ietf:params:xml:ns:pidf:data-model"
+xmlns:op="urn:oma:xml:prs:pidf:oma-pres"
+xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid"
+xmlns:caps="urn:ietf:params:xml:ns:pidf:caps"
+xmlns:c="urn:ietf:params:xml:ns:pidf:cipid"
+xmlns:ca="urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr"
+xmlns:gml="http://www.opengis.net/gml"
+entity="sip:[field0]">
+<tuple id="t3817d047">
+	<status>
+		<basic>open</basic>
+	</status>
+</tuple>
+<pdm:person id="p097eb63c">
+	<op:overriding-willingness>
+		<op:basic>open</op:basic>
+	</op:overriding-willingness>
+    <gp:geopriv>
+    <gp:location-info>
+        <ca:civicAddress xml:lang="en-AU">
+                      <ca:country>AU</ca:country>
+                      <ca:A1>NSW</ca:A1>
+                      <ca:A3>     Wollongong
+                      </ca:A3><ca:A4>North Wollongong
+                    </ca:A4>
+                    <ca:RD>Flinders</ca:RD><ca:STS>Street</ca:STS>
+                    <ca:RDBR>Campbell Street</ca:RDBR>
+                    <ca:LMK>
+                      Gilligan's Island
+                      </ca:LMK> <ca:LOC>Corner</ca:LOC>
+                      <ca:NAM> Video Rental Store </ca:NAM>
+                      <ca:PC>2500</ca:PC>
+                      <ca:ROOM> Westerns and Classics </ca:ROOM>
+                      <ca:PLC>store</ca:PLC>
+                      <ca:POBOX>Private Box 15</ca:POBOX>
+                    </ca:civicAddress>
+    </gp:location-info>
+    <gp:usage-rules/>
+    </gp:geopriv>
+<rpid:activities><rpid:unknown/></rpid:activities>
+	<pdm:note>Hello world</pdm:note>
+	<pdm:timestamp>2005-02-22T20:07:07Z</pdm:timestamp>
+</pdm:person>
+<pdm:device id="d1983">
+	<caps:devcaps><caps:mobility><caps:supported><caps:mobile /></caps:supported></caps:mobility></caps:devcaps>
+	<op:network-availability><op:network id="IMS"><op:active /></op:network></op:network-availability>
+	<pdm:deviceID>[field0]</pdm:deviceID>
+        <gp:geopriv>
+        <gp:location-info>
+        <gml:Point gml:id="point" srsName="urn:ogc:def:crs:EPSG::4326">
+        <gml:pos>[field1] [field2]</gml:pos>
+        </gml:Point>
+        </gp:location-info>
+        <gp:usage-rules/>
+        </gp:geopriv>
+	<pdm:gsmsignalStrength>0</pdm:gsmsignalStrength>
+	<pdm:batteryCapacity>100</pdm:batteryCapacity>
+	<pdm:neighborcellinfo>-1 , -1 , -86:-1 , -1 , -93:-1 , -1 , -110:</pdm:neighborcellinfo>
+</pdm:device>
+</presence>
+
+]]>
+</send>
+
+<recv response="200">
+	<action>
+	    <ereg regexp=".*" search_in="hdr" case_indep="true" header="SIP-Etag:" check_it="true" assign_to="6" />
+	    <log message="Etag is [last_Sip-Etag:]. Custom header is [$6]"/>
+	</action>
+</recv>
+
+
+<label id="1"/>
+<!-- 19 Feb  <pause min="3000" max="5000"/> -->
+<pause min="1000" max="10000"/>
+
+<send retrans="500" start_rtd="true">
+
+<![CDATA[
+
+PUBLISH sip:[field0] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: <sip:[field0]>;tag=[call_number]
+To: <sip:[field0]>
+Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+Call-ID: [call_id]
+Event: presence
+CSeq: [cseq] PUBLISH
+Max-Forwards: 70
+SIP-If-Match: [$6]
+User-Agent: sipp client
+Supported: timer, replaces
+Content-Type: application/pidf+xml
+Content-Length: [len]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<presence xmlns="urn:ietf:params:xml:ns:pidf"
+xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
+xmlns:pdm="urn:ietf:params:xml:ns:pidf:data-model"
+xmlns:op="urn:oma:xml:prs:pidf:oma-pres"
+xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid"
+xmlns:caps="urn:ietf:params:xml:ns:pidf:caps"
+xmlns:c="urn:ietf:params:xml:ns:pidf:cipid"
+xmlns:gml="http://www.opengis.net/gml"
+entity="sip:[field0]">
+<tuple id="t3817d047">
+	<status>
+		<basic>open</basic>
+	</status>
+</tuple>
+<pdm:person id="p097eb63c">
+	<op:overriding-willingness>
+		<op:basic>open</op:basic>
+	</op:overriding-willingness>
+<rpid:activities><rpid:unknown/></rpid:activities>
+	<pdm:note>Hello world</pdm:note>
+	<pdm:timestamp>2005-02-22T20:07:07Z</pdm:timestamp>
+</pdm:person>
+<pdm:device id="d1983">
+	<caps:devcaps><caps:mobility><caps:supported><caps:mobile /></caps:supported></caps:mobility></caps:devcaps>
+	<op:network-availability><op:network id="IMS"><op:active /></op:network></op:network-availability>
+	<pdm:deviceID>[field0]</pdm:deviceID>
+        <gp:geopriv>
+        <gp:location-info>
+        <gml:Point gml:id="point" srsName="urn:ogc:def:crs:EPSG::4326">
+        <gml:pos>[field1] [field2]</gml:pos>
+        </gml:Point>
+        </gp:location-info>
+        <gp:usage-rules/>
+        </gp:geopriv>
+	<pdm:gsmsignalStrength>0</pdm:gsmsignalStrength>
+	<pdm:batteryCapacity>100</pdm:batteryCapacity>
+	<pdm:neighborcellinfo>-1 , -1 , -86:-1 , -1 , -93:-1 , -1 , -110:</pdm:neighborcellinfo>
+</pdm:device>
+</presence>
+]]>>
+
+</send>
+
+
+
+<recv response="200" rtd="true" next="1">
+	<action>
+	    <ereg regexp=".*" search_in="hdr" case_indep="true" header="SIP-Etag:" check_it="true" assign_to="6" />
+	    <log message="Etag is [last_Sip-Etag:]. Custom header is [$6]"/>
+	</action>
+</recv>
+
+
+<ResponseTimeRepartition value="20, 40, 60, 80, 100, 120, 140, 160, 200, 250, 300, 350, 500, 800, 1000"/>
+
+
+</scenario>
